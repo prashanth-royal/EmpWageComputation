@@ -1,15 +1,18 @@
 #!/bin/bash -x
 
-EMP_RATE_PER_HOUR=20
-EMP_HOURS=8
+empCheck=$((RANDOM%3))
+IS_FULL_TIME=1
+IS_PART_TIME=2
+EMP_RATE_PER_HR=20
 
-isPresent=1
-empCheck=$((RANDOM%2))
-
-if [ $empCheck -eq $isPresent ]
+if [ $empCheck -eq $IS_FULL_TIME ]
 then
-	salary=$((EMP_RATE_PER_HOUR*EMP_HOURS))
+   workHrs=8
+elif [ $empCheck -eq $IS_PART_TIME ]
+then
+   workHrs=4
 else
-	echo salary=0
+   workHrs=0
 fi
-	echo $salary
+salary=$(($EMP_RATE_PER_HR*$workHrs))
+echo $salary
