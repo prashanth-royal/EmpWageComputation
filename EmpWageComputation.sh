@@ -41,8 +41,5 @@ do
    empCheck=$(( RANDOM%3 ))
    empHrs=$( getWorkHrs $empCheck )
    totalEmpHrs=$(($totalEmpHrs+$empHrs))
-   dailyWage[$totalWorkingDays]=$( calDailyWage $empHrs )
 done
    totalSalary=$(($totalEmpHrs*$EMP_RATE_PER_HR))
-   echo "Daily Wage : "${dailyWage[@]}
-   echo "Day : "${!dailyWage[@]}
