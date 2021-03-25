@@ -11,6 +11,7 @@ NUM_WORKING_DAYS=20
 totalEmpHrs=0
 totalWorkingDays=0
 
+declare -A dailyWage
 
 function getWorkHrs() {
  empCheck=$((RANDOM%3))
@@ -30,7 +31,7 @@ function getWorkHrs() {
 }
 function calDailyWage() {
    local workHrs=$1
-   wage=$(($empHrs*$EMP_RATE_PER_HR))
+   wage=$(($workHrs*$EMP_RATE_PER_HR))
    echo $wage
 }
 
@@ -39,7 +40,7 @@ do
 
    ((totalWorkingDays++))
    empCheck=$(( RANDOM%3 ))
-   empHrs=$( getWorkHrs $empCheck )
+   empHrs="$( getWorkHrs $empCheck )"
    totalEmpHrs=$(($totalEmpHrs+$empHrs))
    dailyWage[$totalWorkingDays]=$( calDailyWage $empHrs )
 done
